@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sardo'noix</title>
+    <link rel="icon" href="images/noix.png"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/FileSaver.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div id="divP">
+        <div id="onStream">
+            <p style="margin-bottom: 0; ">Objectifs : (!subgift)</p>
+            <span><p>{{stateQuestNoix}} {{noix}}/900 Noix</p><button onclick="add('noix');">+</button></span> <br>
+            <span><p>{{stateQuestSanctu}} {{sanctu}}/120 Sanctuaires</p> <button onclick="add('sanctu');">+</button></span><br>
+            <span><p>{{stateQuestLitho}} {{litho}}/40 Lithoroks </p><button onclick="add('litho');">+</button></span><br>
+            <span><p>{{stateQuestHinox}} {{hinox}}/40 Hinox </p><button onclick="add('hinox');">+</button></span><br>
+            <br>
+            <span><p>Sub à payer : {{subToPay}}</p><button onclick="validepaye()">✔</button></span>
+            <p style="margin-top: 0; ">Sub offerts : {{subPaid}} ({{equiPrixSub}}€)</p>
+            <p v-if="help==true">Entrain de me faire PL par le chat</p>
+            <p v-if="CompleteOneOf==true">Bien joué Sardo, tu vas devoir <br> offrir des subs pour avoir été trop fort.
+            <br> Tu dois offrir {{ subSuccess }} subs à la COMMU</p>
+        </div>
+
+        <div>
+            <button onclick="aide()" id="helpButton" :style="helpStyle">{{ helpMsg }}</button >
+            <button onclick="save()" id="save" style="margin-left:20px ;font-size : 20px; color:green">Save</button >
+            <br>
+            <br>
+            <input type="file" id="files" name="file" />
+            <span class="readBytesButtons">
+                <button style="margin-left:20px ;font-size : 20px; color:green">Charger la save</button>
+            </span>
+        </div>
+
+        <hr>
+        <div id="Config">
+            <h2>Config facile</h2>
+            <p>Utilise cet espace uniquement si tu as besoin de changer les chiffres de façon rapide</p>
+            <label for="Noix">Noix</label>
+            <input id="Noix" v-model="noix">
+            <br>
+            <label for="Sanctuaires">Sanctuaires</label>
+            <input id="Sanctuaires" v-model="sanctu">
+            <br>
+            <label for="Litho">Lithoroks</label>
+            <input id="Litho" v-model="litho">
+            <br>
+            <label for="Hinox">Hinox</label>
+            <input id="Hinox" v-model="hinox">
+            <br>
+            <br>
+            <label>Sub à payer</label>
+            <input v-model="subToPay">
+            <br>
+            <label>Subs déjà payés</label>
+            <input v-model="subPaid">
+            <button onclick="reloadPaye()">Refresh pour avoir le prix</button>
+
+        </div>
+
+    </div>
+    <hr>
+    <footer>
+        <p>Dev par <a href="https://twitter.com/LezdCS">Lezd</a>, c'est moche mais fonctionnel :)</p>
+    </footer>
+
+
+
+
+    <script src="js/myscript.js"></script>
+</body>
+</html>

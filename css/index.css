@@ -1,0 +1,24 @@
+body{
+    margin-left: 0;
+}
+#onStream > p,#onStream > span> p{
+    font-family: "Segoe UI Semibold",serif;
+    font-size: 120%;
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000, -1px -1px 0 #000;
+}
+
+#onStream > span> p{
+    display:inline;
+}
+
+#onStream{
+
+    width: 500px;
+    padding: 30px 30px 200px 30px;
+    color: white;
+    background-color: #0033cc;
+}
+#onStream > span > button{
+    position: absolute;
+    left: 400px;
+}
