@@ -30,7 +30,7 @@ function reloadPaye(){
 
 function validepaye(){
     if(app.subToPay>0){
-        eastereggBG("pensif",3000)
+        eastereggBG("pensif",3000);
         app.subPaid += app.subToPay;
         app.equiPrixSub += 4.99*app.subToPay;
         app.subToPay=0;
@@ -136,7 +136,7 @@ function readBlob(opt_startByte, opt_stopByte) {
 
     var files = document.getElementById('files').files;
     if (!files.length) {
-        alert('Veuillez choisir une save à charger');
+        alert('Veuillez avant toutes choses choisir une save à charger');
         return;
     }
 
