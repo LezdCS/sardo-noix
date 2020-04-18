@@ -12,12 +12,12 @@
     <div id="divP">
         <div id="onStream">
             <p style="margin-bottom: 0; ">Objectifs : (!subgift)</p>
-            <span><p>{{stateQuestNoix}} {{noix}}/900 Noix</p><button onclick="add('noix');">+</button></span> <br>
-            <span><p>{{stateQuestSanctu}} {{sanctu}}/120 Sanctuaires</p> <button onclick="add('sanctu');">+</button></span><br>
-            <span><p>{{stateQuestLitho}} {{litho}}/40 Lithoroks </p><button onclick="add('litho');">+</button></span><br>
-            <span><p>{{stateQuestHinox}} {{hinox}}/40 Hinox </p><button onclick="add('hinox');">+</button></span><br>
+            <p class="pStream">{{stateQuestNoix}} {{noix}}/900 Noix</p><button onclick="add('noix');">+</button><br>
+            <p class="pStream">{{stateQuestSanctu}} {{sanctu}}/120 Sanctuaires</p> <button onclick="add('sanctu');">+</button><br>
+            <p class="pStream">{{stateQuestLitho}} {{litho}}/40 Lithoroks </p><button onclick="add('litho');">+</button><br>
+            <p class="pStream">{{stateQuestHinox}} {{hinox}}/40 Hinox </p><button onclick="add('hinox');">+</button><br>
             <br>
-            <span><p>Sub à payer : {{subToPay}}</p><button onclick="validepaye()">✔</button></span>
+            <p class="pStream">Sub à payer : {{subToPay}}</p><button onclick="validepaye()">✔</button>
             <p style="margin-top: 0; ">Sub offerts : {{subPaid}} ({{equiPrixSub}}€)</p>
             <p v-if="help==true">Entrain de me faire PL par le chat</p>
             <p v-if="CompleteOneOf==true">Bien joué Sardo, tu vas devoir <br> offrir des subs pour avoir été trop fort.
@@ -52,11 +52,11 @@
             <input id="Hinox" v-model="hinox">
             <br>
             <br>
-            <label>Sub à payer</label>
-            <input v-model="subToPay">
+            <label for="SubToPay">Sub à payer</label>
+            <input id="SubToPay" v-model="subToPay">
             <br>
-            <label>Subs déjà payés</label>
-            <input v-model="subPaid">
+            <label for="SubPaid">Subs déjà payés</label>
+            <input id="SubPaid" v-model="subPaid">
             <button onclick="reloadPaye()">Refresh pour avoir le prix</button>
         </div>
 
