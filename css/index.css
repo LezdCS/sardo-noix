@@ -1,6 +1,5 @@
 body{
     margin: 0 0 0 0;
-
 }
 #onStream > p,#onStream > span> p{
     font-family: "Segoe UI Semibold",serif;
@@ -13,7 +12,6 @@ body{
 }
 
 #onStream{
-
     width: 500px;
     padding: 30px 30px 200px 30px;
     color: white;

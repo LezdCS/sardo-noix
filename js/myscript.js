@@ -155,8 +155,6 @@ function readBlob(opt_startByte, opt_stopByte) {
 
     var blob = file.slice(start, stop + 1);
     reader.readAsBinaryString(blob);
-
-
 }
 
 document.querySelector('.readBytesButtons').addEventListener('click', function(evt) {
