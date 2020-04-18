@@ -83,24 +83,33 @@ function moins(type){
         case 'noix':
             if(app.noix!==0) {
                 app.noix--;
-                app.help ? app.subToPay -= 5 : {};
+                if(app.subToPay!==0) {
+                    app.help ? app.subToPay -= 5 : {};
+                }
             }
             break;
         case 'sanctu':
             if(app.sanctu!==0) {
                 app.sanctu--;
-                app.help?app.subToPay-=15:{};
+                if(app.subToPay!==0) {
+                    app.help ? app.subToPay -= 15 : {};
+                }
             }
             break;
         case 'litho':
             if(app.litho!==0){
-                app.litho--; app.help?app.subToPay-=20:{};
+                app.litho--;
+                if(app.subToPay!==0){
+                    app.help?app.subToPay-=20:{};
+                }
             }
             break;
         case 'hinox':
             if(app.hinox!==0) {
                 app.hinox--;
-                app.help ? app.subToPay -= 10 : {};
+                if(app.subToPay!==0){
+                    app.help ? app.subToPay -= 10 : {};
+                }
             }
             break;
     }
