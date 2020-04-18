@@ -78,6 +78,24 @@ function add(type){
     }
 }
 
+function moins(type){
+    switch (type){
+        case 'noix':
+            app.noix--; app.help?app.subToPay-=5:{};
+            break;
+        case 'sanctu':
+            app.sanctu--; app.help?app.subToPay-=15:{};
+            break;
+        case 'litho':
+            app.litho++; app.help?app.subToPay-=20:{};
+            checkend();
+            break;
+        case 'hinox':
+            app.hinox++; app.help?app.subToPay-=10:{};
+            break;
+    }
+}
+
 function eastereggBG(gifname, timeout){
     console.log("debut");
     document.getElementById("onStream").style.backgroundImage = 'url(./images/'+gifname+'.gif)';

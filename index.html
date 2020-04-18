@@ -12,12 +12,12 @@
     <div id="divP">
         <div id="onStream">
             <p style="margin-bottom: 0; ">Objectifs : (!subgift)</p>
-            <p class="pStream">{{stateQuestNoix}} {{noix}}/900 Noix</p><button onclick="add('noix');">+</button><br>
-            <p class="pStream">{{stateQuestSanctu}} {{sanctu}}/120 Sanctuaires</p> <button onclick="add('sanctu');">+</button><br>
-            <p class="pStream">{{stateQuestLitho}} {{litho}}/40 Lithoroks </p><button onclick="add('litho');">+</button><br>
-            <p class="pStream">{{stateQuestHinox}} {{hinox}}/40 Hinox </p><button onclick="add('hinox');">+</button><br>
+            <p class="pStream">{{stateQuestNoix}} {{noix}}/900 Noix</p><button class="bouttonmoins" onclick="moins('noix');">-</button> <button class="bouttonplus" onclick="add('noix');">+</button><br>
+            <p class="pStream">{{stateQuestSanctu}} {{sanctu}}/120 Sanctuaires</p> <button class="bouttonmoins" onclick="moins('sanctu');">-</button><button class="bouttonplus" onclick="add('sanctu');">+</button><br>
+            <p class="pStream">{{stateQuestLitho}} {{litho}}/40 Lithoroks </p><button class="bouttonmoins" onclick="moins('litho');">-</button><button class="bouttonplus" onclick="add('litho');">+</button><br>
+            <p class="pStream">{{stateQuestHinox}} {{hinox}}/40 Hinox </p><button class="bouttonmoins" onclick="moins('hinox');">-</button><button class="bouttonplus" onclick="add('hinox');">+</button><br>
             <br>
-            <p class="pStream">Sub à payer : {{subToPay}}</p><button onclick="validepaye()">✔</button>
+            <p class="pStream">Sub à payer : {{subToPay}}</p><button class="bouttonplus" onclick="validepaye()">✔</button>
             <p style="margin-top: 0; ">Sub offerts : {{subPaid}} ({{equiPrixSub}}€)</p>
             <br>
             <p v-if="help==true">Actuellement entrain de se faire PL par le chat</p>
