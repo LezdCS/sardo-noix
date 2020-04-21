@@ -1,5 +1,6 @@
 body{
     margin: 0 0 0 0;
+    font-family: "Segoe UI Semibold",serif;
 }
 
 #divP{
@@ -26,12 +27,37 @@ body{
     display:inline;
 }
 
-.bouttonplus{
-    position: absolute;
-    left: 520px;
+.bouttonmoins, .bouttonplus{
+    float: right;
+    margin:0 20px 0 0;
 }
 
-.bouttonmoins{
-    position: absolute;
-    left: 490px;
+#config{
+    margin-left: 20px;
+}
+
+a {
+    color: #2ecc71;
+    text-decoration: none;
+}
+
+a:visited{
+    color: #1abc9c;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+footer{
+    background-color: #2f3640;
+    color: white;
+    width: 100%;
+    bottom: 0;
+    position: fixed;
+}
+
+footer > p {
+    margin : 0;
 }

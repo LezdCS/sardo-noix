@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Sardo'noix</title>
@@ -20,43 +20,53 @@
             <p class="pStream">Sub à payer : {{subToPay}}</p><button class="bouttonplus" onclick="validepaye()">✔</button>
             <p style="margin-top: 0; ">Sub offerts : {{subPaid}} ({{equiPrixSub}}€)</p>
             <br>
-            <p v-if="help==true">Actuellement entrain de se faire PL par le chat</p>
-            <p v-if="CompleteOneOf==true">Bien joué Sardo, tu vas devoir <br> offrir des subs pour avoir été trop fort.
-            <br> Tu dois offrir {{ subSuccess }} subs à la COMMU</p>
+            <template v-if="help==true"><p>Actuellement entrain de se faire PL par le chat</p></template>
+            <template v-if="CompleteOneOf==true"><p>Bien joué Sard',<br> tu dois offrir {{ subSuccess }} subs à la COMMU</p></template>
         </div>
 
-        <div id="Config">
-            <h2>Config facile</h2>
-            <p>Utilise cet espace uniquement si tu as besoin de changer les chiffres de façon rapide</p>
-            <label>Noix<input id="Noix" v-model="noix"></label>
-            <br>
-            <label>Sanctuaires<input id="Sanctuaires" v-model="sanctu"></label>
-            <br>
-            <label>Lithoroks<input id="Litho" v-model="litho"></label>
-            <br>
-            <label>Hinox<input id="Hinox" v-model="hinox"></label>
-            <br>
-            <br>
-            <label>Sub à payer<input id="SubToPay" v-model="subToPay"></label>
-            <br>
-            <label>Subs déjà payés<input id="SubPaid" v-model="subPaid" v-on:input="reloadPaye"></label>
-        </div>
+        <div id="config">
+            <h2>Configuration</h2>
+            <table>
+                <tr>
+                    <td>Noix</td>
+                    <td><label for="Noix"></label><input type="number" id="Noix" v-model="noix"></td>
+                </tr>
+                <tr>
+                    <td>Sanctuaires</td>
+                    <td><label for="Sanctuaires"></label><input type="number" id="Sanctuaires" v-model="sanctu"></td>
+                </tr>
+                <tr>
+                    <td>Lithoroks</td>
+                    <td><label for="Litho"></label><input type="number" id="Litho" v-model="litho"></td>
+                </tr>
+                <tr>
+                    <td>Hinox</td>
+                    <td><label for="Hinox"></label><input type="number" id="Hinox" v-model="hinox"></td>
+                </tr>
+                <tr>
+                    <td>Sub à payer</td>
+                    <td><label for="SubToPay"></label><input id="SubToPay" v-model="subToPay"></td>
+                </tr>
+                <tr>
+                    <td>Subs déjà payés</td>
+                    <td><label for="SubPaid"></label><input id="SubPaid" v-model="subPaid"></td>
+                </tr>
+            </table>
 
-        <div>
-            <button onclick="aide()" id="helpButton" :style="helpStyle">{{ helpMsg }}</button >
-            <button onclick="save()" id="save" style="margin-left:20px ;font-size : 20px; color:green">Save</button >
-            <br>
-            <br>
-            <input type="file" id="files" name="file" />
-            <span class="readBytesButtons">
-                <button style="margin-left:20px ;font-size : 20px; color:green">Charger la save</button>
-            </span>
+            <div style="margin-top: 80px">
+                <button onclick="aide()" id="helpButton" :style="helpStyle">{{ helpMsg }}</button >
+                <button onclick="save()" id="save" style="margin-left:20px ;font-size : 20px; color:green">Save</button >
+                <br>
+                <br>
+                <input type="file" id="files" name="file" />
+                <span class="readBytesButtons">
+                    <button style="margin-left:20px ;font-size : 20px; color:green">Charger la save</button>
+                </span>
+            </div>
         </div>
-
     </div>
-    <hr>
     <footer>
-        <p>Dev par <a href="https://twitter.com/LezdCS">Lezd</a>, c'est moche mais fonctionnel :) Si vous remplissez les objectifs y'a des petites surprises ;) </p>
+        <p>Dev par <a href="https://twitter.com/LezdCS">Lezd</a> 💖 </p>
     </footer>
 
     <script src="js/myscript.js"></script>
