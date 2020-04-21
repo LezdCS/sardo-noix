@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Sardo'noix</title>
@@ -25,18 +25,6 @@
             <br> Tu dois offrir {{ subSuccess }} subs à la COMMU</p>
         </div>
 
-        <div>
-            <button onclick="aide()" id="helpButton" :style="helpStyle">{{ helpMsg }}</button >
-            <button onclick="save()" id="save" style="margin-left:20px ;font-size : 20px; color:green">Save</button >
-            <br>
-            <br>
-            <input type="file" id="files" name="file" />
-            <span class="readBytesButtons">
-                <button style="margin-left:20px ;font-size : 20px; color:green">Charger la save</button>
-            </span>
-        </div>
-
-        <hr>
         <div id="Config">
             <h2>Config facile</h2>
             <p>Utilise cet espace uniquement si tu as besoin de changer les chiffres de façon rapide</p>
@@ -51,8 +39,18 @@
             <br>
             <label>Sub à payer<input id="SubToPay" v-model="subToPay"></label>
             <br>
-            <label>Subs déjà payés<input id="SubPaid" v-model="subPaid"></label>
-            <button onclick="reloadPaye()">Refresh pour avoir le prix</button>
+            <label>Subs déjà payés<input id="SubPaid" v-model="subPaid" v-on:input="reloadPaye"></label>
+        </div>
+
+        <div>
+            <button onclick="aide()" id="helpButton" :style="helpStyle">{{ helpMsg }}</button >
+            <button onclick="save()" id="save" style="margin-left:20px ;font-size : 20px; color:green">Save</button >
+            <br>
+            <br>
+            <input type="file" id="files" name="file" />
+            <span class="readBytesButtons">
+                <button style="margin-left:20px ;font-size : 20px; color:green">Charger la save</button>
+            </span>
         </div>
 
     </div>

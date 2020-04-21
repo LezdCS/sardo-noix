@@ -20,6 +20,11 @@ var app = new Vue({
         },
         CompleteOneOf: false,
         subSuccess:0,
+    },
+    methods: {
+        reloadPaye: function (){
+            reloadPaye();
+        }
     }
 });
 
