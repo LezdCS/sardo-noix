@@ -28,11 +28,13 @@ var app = new Vue({
     }
 });
 
+// usefull when the user import his save or change the value in the configuration part, it re-calcul the total amount paid
 function reloadPaye(){
     app.equiPrixSub = app.subPaid*4.99;
     app.equiPrixSub = Math.round(app.equiPrixSub * 100) / 100
 }
 
+// function called when the user click on "validation" button
 function validepaye(){
     if(app.subToPay>0){
         eastereggBG("pensif",3000);
@@ -43,6 +45,7 @@ function validepaye(){
     }
 }
 
+// control the help part
 function aide(){
     if(app.help){
         app.help = false;
@@ -124,7 +127,7 @@ function moins(type){
     }
 }
 
-
+// randomize a number between 0 and max.
 function randomizer(max){
     app.subSuccess = Math.floor(Math.random() * Math.floor(max));
     if(app.subSuccess>10){
@@ -134,8 +137,8 @@ function randomizer(max){
     setTimeout("app.CompleteOneOf=false;",20000);
 }
 
+// Write the data in JSON form into a .txt
 function save(){
-
     var contentJson = {
         "saveInfos":[
             {"Noix":app.noix, "Sanctuaires":app.sanctu, "Litho":app.litho, "Hinox":app.hinox, "Sub to pay":app.subToPay,"Sub paid":app.subPaid}
@@ -188,6 +191,7 @@ document.querySelector('.readBytesButtons').addEventListener('click', function(e
     }
 }, false);
 
+// parse the content of the save loaded and apply everything to the variables.
 function loadsavedata(contentOfTxt){
     const parsing = JSON.parse(contentOfTxt);
     app.noix = parsing.saveInfos[0].Noix;
@@ -199,6 +203,14 @@ function loadsavedata(contentOfTxt){
     reloadPaye();
 }
 
+// verify if all the goals are validated, if true -> play a gif in the background
+function checkend(){
+    if(app.stateQuestHinox === "☑" && app.stateQuestLitho === "☑" &&  app.stateQuestSanctu === "☑" && app.stateQuestNoix === "☑"){
+        setTimeout("",20000);
+        eastereggBG("FINI",10000)
+    }
+}
+
 function eastereggBG(gifname, timeout){
     document.getElementById("onStream").style.backgroundImage = 'url(./images/'+gifname+'.gif)';
     setTimeout("finEastereggBG()",timeout);
@@ -206,11 +218,4 @@ function eastereggBG(gifname, timeout){
 
 function finEastereggBG() {
     document.getElementById("onStream").style.backgroundImage = '';
-}
-
-function checkend(){
-    if(app.stateQuestHinox === "☑" && app.stateQuestLitho === "☑" &&  app.stateQuestSanctu === "☑" && app.stateQuestNoix === "☑"){
-        setTimeout("",20000);
-        eastereggBG("FINI",10000)
-    }
 }
