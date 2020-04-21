@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Sardo'noix</title>
@@ -45,11 +45,11 @@
                 </tr>
                 <tr>
                     <td>Sub à payer</td>
-                    <td><label for="SubToPay"></label><input id="SubToPay" v-model="subToPay"></td>
+                    <td><label for="SubToPay"></label><input type="number" id="SubToPay" v-model="subToPay"></td>
                 </tr>
                 <tr>
                     <td>Subs déjà payés</td>
-                    <td><label for="SubPaid"></label><input id="SubPaid" v-model="subPaid"></td>
+                    <td><label for="SubPaid"></label><input type="number" id="SubPaid" v-model="subPaid" v-on:input="reloadPaye"></td>
                 </tr>
             </table>
 
