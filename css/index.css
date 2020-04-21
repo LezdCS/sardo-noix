@@ -17,6 +17,12 @@ body{
     background-color: #0033cc;
 }
 
+@media screen and (max-width: 992px) {
+    #onStream {
+        width: 100%;
+    }
+}
+
 #onStream > p,#onStream > span> p{
     font-family: "Segoe UI Semibold",serif;
     font-size: 120%;
@@ -55,9 +61,16 @@ footer{
     color: white;
     width: 100%;
     bottom: 0;
-    position: fixed;
+    position: absolute;
+    height: 130px;
 }
 
-footer > p {
-    margin : 0;
+@media screen and (max-width: 992px) {
+    footer {
+        position: relative;
+    }
+}
+
+footer > div > p{
+    text-align: center;
 }

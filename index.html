@@ -29,27 +29,27 @@
             <table>
                 <tr>
                     <td>Noix</td>
-                    <td><label for="Noix"></label><input type="number" id="Noix" v-model="noix"></td>
+                    <td><label for="Noix"></label><input type="number" min="0" id="Noix" v-model="noix"></td>
                 </tr>
                 <tr>
                     <td>Sanctuaires</td>
-                    <td><label for="Sanctuaires"></label><input type="number" id="Sanctuaires" v-model="sanctu"></td>
+                    <td><label for="Sanctuaires"></label><input type="number" min="0" id="Sanctuaires" v-model="sanctu"></td>
                 </tr>
                 <tr>
                     <td>Lithoroks</td>
-                    <td><label for="Litho"></label><input type="number" id="Litho" v-model="litho"></td>
+                    <td><label for="Litho"></label><input type="number" min="0" id="Litho" v-model="litho"></td>
                 </tr>
                 <tr>
                     <td>Hinox</td>
-                    <td><label for="Hinox"></label><input type="number" id="Hinox" v-model="hinox"></td>
+                    <td><label for="Hinox"></label><input type="number" min="0" id="Hinox" v-model="hinox"></td>
                 </tr>
                 <tr>
                     <td>Sub à payer</td>
-                    <td><label for="SubToPay"></label><input type="number" id="SubToPay" v-model="subToPay"></td>
+                    <td><label for="SubToPay"></label><input type="number" min="0" id="SubToPay" v-model="subToPay"></td>
                 </tr>
                 <tr>
                     <td>Subs déjà payés</td>
-                    <td><label for="SubPaid"></label><input type="number" id="SubPaid" v-model="subPaid" v-on:input="reloadPaye"></td>
+                    <td><label for="SubPaid"></label><input type="number" min="0" id="SubPaid" v-model="subPaid" v-on:input="reloadPaye"></td>
                 </tr>
             </table>
 
@@ -66,7 +66,12 @@
         </div>
     </div>
     <footer>
-        <p>Dev par <a href="https://twitter.com/LezdCS">Lezd</a> 💖 </p>
+        <div>
+            <p>Dev par <a href="https://twitter.com/LezdCS">Lezd</a> 💖 </p>
+            <p>
+                <a href="https://github.com/LezdCS"><img src="images/github.png" width="30" alt="github logo"></a>
+            </p>
+        </div>
     </footer>
 
     <script src="js/myscript.js"></script>
