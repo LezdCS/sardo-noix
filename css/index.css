@@ -1,6 +1,21 @@
 body{
     margin: 0 0 0 0;
 }
+
+#divP{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#onStream{
+    width: 50%;
+    padding-left:30px;
+    padding-top:30px;
+    padding-bottom:200px;
+    color: white;
+    background-color: #0033cc;
+}
+
 #onStream > p,#onStream > span> p{
     font-family: "Segoe UI Semibold",serif;
     font-size: 120%;
@@ -11,12 +26,6 @@ body{
     display:inline;
 }
 
-#onStream{
-    width: 500px;
-    padding: 30px 30px 200px 30px;
-    color: white;
-    background-color: #0033cc;
-}
 .bouttonplus{
     position: absolute;
     left: 520px;
