@@ -90,6 +90,9 @@ function moins(type){
     switch (type){
         case 'noix':
             if(app.noix!==0) {
+                if(app.stateQuestNoix === "☑" && app.subToPay!==0){
+                    app.subToPay -= app.subSuccess;
+                }
                 app.noix--;
                 app.stateQuestNoix = "☐";
                 if(app.subToPay!==0) {
@@ -99,6 +102,9 @@ function moins(type){
             break;
         case 'sanctu':
             if(app.sanctu!==0) {
+                if(app.stateQuestSanctu === "☑" && app.subToPay!=0){
+                    app.subToPay -= app.subSuccess;
+                }
                 app.sanctu--;
                 app.stateQuestSanctu = "☐";
                 if(app.subToPay!==0) {
@@ -108,6 +114,9 @@ function moins(type){
             break;
         case 'litho':
             if(app.litho!==0){
+                if(app.stateQuestLitho === "☑" && app.subToPay!=0){
+                    app.subToPay -= app.subSuccess;
+                }
                 app.litho--;
                 app.stateQuestLitho = "☐";
                 if(app.subToPay!==0){
@@ -117,6 +126,9 @@ function moins(type){
             break;
         case 'hinox':
             if(app.hinox!==0) {
+                if(app.stateQuestHinox === "☑" && app.subToPay!=0){
+                    app.subToPay -= app.subSuccess;
+                }
                 app.hinox--;
                 app.stateQuestHinox = "☐";
                 if(app.subToPay!==0){
