@@ -83,6 +83,7 @@ function moins(type){
         case 'noix':
             if(app.noix!==0) {
                 app.noix--;
+                app.stateQuestNoix = "☐";
                 if(app.subToPay!==0) {
                     app.help ? app.subToPay -= 5 : {};
                 }
@@ -91,6 +92,7 @@ function moins(type){
         case 'sanctu':
             if(app.sanctu!==0) {
                 app.sanctu--;
+                app.stateQuestSanctu = "☐";
                 if(app.subToPay!==0) {
                     app.help ? app.subToPay -= 15 : {};
                 }
@@ -99,6 +101,7 @@ function moins(type){
         case 'litho':
             if(app.litho!==0){
                 app.litho--;
+                app.stateQuestLitho = "☐";
                 if(app.subToPay!==0){
                     app.help?app.subToPay-=20:{};
                 }
@@ -107,6 +110,7 @@ function moins(type){
         case 'hinox':
             if(app.hinox!==0) {
                 app.hinox--;
+                app.stateQuestHinox = "☐";
                 if(app.subToPay!==0){
                     app.help ? app.subToPay -= 10 : {};
                 }
@@ -115,16 +119,6 @@ function moins(type){
     }
 }
 
-function eastereggBG(gifname, timeout){
-    console.log("debut");
-    document.getElementById("onStream").style.backgroundImage = 'url(./images/'+gifname+'.gif)';
-    setTimeout("finEastereggBG()",timeout);
-}
-
-function finEastereggBG() {
-    console.log("fin");
-    document.getElementById("onStream").style.backgroundImage = '';
-}
 
 function randomizer(max){
     app.subSuccess = Math.floor(Math.random() * Math.floor(max));
@@ -132,18 +126,7 @@ function randomizer(max){
         eastereggBG("mort",10000)
     }
     app.subToPay += app.subSuccess;
-    setTimeout("timingOut()",20000);
-}
-
-function timingOut(){
-    app.CompleteOneOf=false;
-}
-
-function checkend(){
-    if(app.stateQuestHinox === "☑" && app.stateQuestLitho === "☑" &&  app.stateQuestSanctu === "☑" && app.stateQuestNoix === "☑"){
-        setTimeout("",20000);
-        eastereggBG("FINI",10000)
-    }
+    setTimeout("app.CompleteOneOf=false;",20000);
 }
 
 function save(){
@@ -156,7 +139,6 @@ function save(){
 
     contentJson = JSON.stringify(contentJson);
 
-    var content = "Noix : "+app.noix+ "\nSanctuaires : "+app.sanctu+"\nLitho : " +app.litho + "\nHinox : " +app.hinox + "\nSub to pay : "+app.subToPay+"\nSub paid : "+app.subPaid
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(contentJson));
     element.setAttribute('download', "save.txt");
@@ -203,7 +185,7 @@ document.querySelector('.readBytesButtons').addEventListener('click', function(e
 }, false);
 
 function loadsavedata(contentOfTxt){
-    var parsing = JSON.parse(contentOfTxt);
+    const parsing = JSON.parse(contentOfTxt);
     app.noix = parsing.saveInfos[0].Noix;
     app.sanctu = parsing.saveInfos[0].Sanctuaires;
     app.litho = parsing.saveInfos[0].Litho;
@@ -211,4 +193,20 @@ function loadsavedata(contentOfTxt){
     app.subToPay = parsing.saveInfos[0]["Sub to pay"];
     app.subPaid = parsing.saveInfos[0]["Sub paid"];
     reloadPaye();
+}
+
+function eastereggBG(gifname, timeout){
+    document.getElementById("onStream").style.backgroundImage = 'url(./images/'+gifname+'.gif)';
+    setTimeout("finEastereggBG()",timeout);
+}
+
+function finEastereggBG() {
+    document.getElementById("onStream").style.backgroundImage = '';
+}
+
+function checkend(){
+    if(app.stateQuestHinox === "☑" && app.stateQuestLitho === "☑" &&  app.stateQuestSanctu === "☑" && app.stateQuestNoix === "☑"){
+        setTimeout("",20000);
+        eastereggBG("FINI",10000)
+    }
 }
