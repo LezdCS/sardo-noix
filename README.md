@@ -7,9 +7,5 @@ Il suffit de lancer le fichier index.html pour commencer à utiliser le programm
 Pour créer une save il faut appuyer sur le bouton "Save".
 Pour load une save il faut cliquer sur "Choisir un fichier", choisir le fichier de save puis sur "Charger la save".
 
-
 La section "Config facile" permet juste de modifier les valeurs de façon très rapide.
-Si depuis cette fonction vous changez le nombre de "Subs déjà payés" il faut que vous appuyez sur le boutton "Refresh pour avoir le prix" impérativement.
 
-
-Je touche à VueJS depuis hier donc c'est pas un code hyper propre 😅.
