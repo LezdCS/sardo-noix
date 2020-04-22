@@ -35,6 +35,10 @@ var app = new Vue({
         if(localStorage.subToPay){this.subToPay = localStorage.subToPay;}
         if(localStorage.subPaid){this.subPaid = localStorage.subPaid;}
         if(localStorage.equiPrixSub){this.equiPrixSub = localStorage.equiPrixSub;}
+        if(localStorage.stateQuestNoix){this.stateQuestNoix = localStorage.stateQuestNoix;}
+        if(localStorage.stateQuestSanctu){this.stateQuestSanctu = localStorage.stateQuestSanctu;}
+        if(localStorage.stateQuestLitho){this.stateQuestLitho = localStorage.stateQuestLitho;}
+        if(localStorage.stateQuestHinox){this.stateQuestHinox = localStorage.stateQuestHinox;}
     },
     watch: {
         noix(newNoix) {
@@ -57,6 +61,18 @@ var app = new Vue({
         },
         equiPrixSub(newEquiPrixSub) {
             localStorage.equiPrixSub = newEquiPrixSub;
+        },
+        stateQuestNoix(newStateQuestNoix) {
+            localStorage.stateQuestNoix = newStateQuestNoix;
+        },
+        stateQuestSanctu(newstateQuestSanctu) {
+            localStorage.stateQuestSanctu = newstateQuestSanctu;
+        },
+        stateQuestLitho(newstateQuestLitho) {
+            localStorage.stateQuestLitho = newstateQuestLitho;
+        },
+        stateQuestHinox(newstateQuestHinox) {
+            localStorage.stateQuestHinox = newstateQuestHinox;
         }
     }
 
