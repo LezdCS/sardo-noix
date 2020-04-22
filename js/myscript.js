@@ -62,21 +62,21 @@ var app = new Vue({
 
 });
 
-// verify if all the goals are validated, if true -> play a gif in the background
-function checkend(){
-    if(app.stateQuestHinox === "☑" && app.stateQuestLitho === "☑" &&  app.stateQuestSanctu === "☑" && app.stateQuestNoix === "☑"){
-        setTimeout("",20000);
-        eastereggBG("FINI",10000);
-    }
-}
-
 function eastereggBG(gifname, timeout){
     document.getElementById("onStream").style.backgroundImage = 'url(./images/'+gifname+'.gif)';
     setTimeout("finEastereggBG()",timeout);
 }
 
 function finEastereggBG() {
-    document.getElementById("onStream").style.backgroundImage = '';
+    document.getElementById("onStream").style.backgroundImage = "";
+}
+
+// verify if all the goals are validated, if true -> play a gif in the background
+function checkend(){
+    if(app.stateQuestHinox === "☑" && app.stateQuestLitho === "☑" &&  app.stateQuestSanctu === "☑" && app.stateQuestNoix === "☑"){
+        setTimeout("",20000);
+        eastereggBG("FINI",10000);
+    }
 }
 
 // function called when the user click on "validation" button
