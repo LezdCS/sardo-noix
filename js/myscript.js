@@ -1,5 +1,5 @@
 var app = new Vue({
-    el: '#divP',
+    el: "#divP",
     data: {
         noix : 0,
         sanctu:0,
@@ -15,16 +15,16 @@ var app = new Vue({
         help: false,
         helpMsg : "Aide : OFF",
         helpStyle : {
-            color : 'red',
-            fontSize : '20px'
+            color : "red",
+            fontSize : "20px"
         },
         CompleteOneOf: false,
         subSuccess:0,
     },
     methods: {
-        reloadPaye: function (){
+        reloadPaye(){
             app.equiPrixSub = app.subPaid*4.99;
-            app.equiPrixSub = Math.round(app.equiPrixSub * 100) / 100
+            app.equiPrixSub = Math.round(app.equiPrixSub * 100) / 100;
         }
     },
     mounted() {
@@ -62,6 +62,22 @@ var app = new Vue({
 
 });
 
+// verify if all the goals are validated, if true -> play a gif in the background
+function checkend(){
+    if(app.stateQuestHinox === "☑" && app.stateQuestLitho === "☑" &&  app.stateQuestSanctu === "☑" && app.stateQuestNoix === "☑"){
+        setTimeout("",20000);
+        eastereggBG("FINI",10000);
+    }
+}
+
+function eastereggBG(gifname, timeout){
+    document.getElementById("onStream").style.backgroundImage = 'url(./images/'+gifname+'.gif)';
+    setTimeout("finEastereggBG()",timeout);
+}
+
+function finEastereggBG() {
+    document.getElementById("onStream").style.backgroundImage = '';
+}
 
 // function called when the user click on "validation" button
 function validepaye(){
@@ -70,7 +86,7 @@ function validepaye(){
         app.subPaid += app.subToPay;
         app.equiPrixSub += 4.99*app.subToPay;
         app.subToPay=0;
-        app.equiPrixSub = Math.round(app.equiPrixSub * 100) / 100
+        app.equiPrixSub = Math.round(app.equiPrixSub * 100) / 100;
     }
 }
 
@@ -78,37 +94,37 @@ function validepaye(){
 function aide(){
     if(app.help){
         app.help = false;
-        app.helpStyle.color='red';
-        app.helpMsg = "Aide : OFF"
+        app.helpStyle.color="red";
+        app.helpMsg = "Aide : OFF";
     }else{
         app.help = true;
-        app.helpStyle.color='green';
-        app.helpMsg = "Aide : ON"
+        app.helpStyle.color="green";
+        app.helpMsg = "Aide : ON";
     }
 }
 
 function add(type){
     switch (type){
-        case 'noix':
-            if(app.noix<900 && app.stateQuestNoix !== "☑"){app.noix++; app.help?app.subToPay+=5:{}}
+        case "noix":
+            if(app.noix<900 && app.stateQuestNoix !== "☑"){app.noix++; app.help?app.subToPay+=5:{};}
             if(app.noix===900 && app.stateQuestNoix !== "☑"){ randomizer(20);  app.stateQuestNoix = "☑"; app.CompleteOneOf=true; eastereggBG('dance', 8000);}
             checkend();
             break;
-        case 'sanctu':
-            if(app.sanctu<120 && app.stateQuestSanctu !== "☑"){app.sanctu++; app.help?app.subToPay+=15:{}}
+        case "sanctu":
+            if(app.sanctu<120 && app.stateQuestSanctu !== "☑"){app.sanctu++; app.help?app.subToPay+=15:{};}
             if(app.sanctu===120 && app.stateQuestSanctu !== "☑"){ randomizer(200);  app.stateQuestSanctu = "☑"; app.CompleteOneOf=true; eastereggBG('dance', 8000);}
             checkend();
             break;
-        case 'litho':
-            if(app.litho<40 && app.stateQuestLitho !== "☑"){app.litho++; app.help?app.subToPay+=20:{}}
+        case "litho":
+            if(app.litho<40 && app.stateQuestLitho !== "☑"){app.litho++; app.help?app.subToPay+=20:{};}
             if(app.litho===40 && app.stateQuestLitho !== "☑"){ randomizer(20);  app.stateQuestLitho = "☑"; app.CompleteOneOf=true; eastereggBG('dance', 8000);}
             if(app.litho===10 || app.litho===20 || app.litho===30 ){
                 eastereggBG('smart', 1000);
             }
             checkend();
             break;
-        case 'hinox':
-            if(app.hinox<40 && app.stateQuestHinox !== "☑"){app.hinox++; app.help?app.subToPay+=10:{}}
+        case "hinox":
+            if(app.hinox<40 && app.stateQuestHinox !== "☑"){app.hinox++; app.help?app.subToPay+=10:{};}
             if(app.hinox===40 && app.stateQuestHinox !== "☑"){ randomizer(20);  app.stateQuestHinox = "☑"; app.CompleteOneOf=true; eastereggBG('fin', 4000);}
             checkend();
             break;
@@ -117,7 +133,7 @@ function add(type){
 
 function moins(type){
     switch (type){
-        case 'noix':
+        case "noix":
             if(app.noix!==0) {
                 if(app.stateQuestNoix === "☑" && app.subToPay!==0){
                     app.subToPay -= app.subSuccess;
@@ -129,7 +145,7 @@ function moins(type){
                 }
             }
             break;
-        case 'sanctu':
+        case "sanctu":
             if(app.sanctu!==0) {
                 if(app.stateQuestSanctu === "☑" && app.subToPay!=0){
                     app.subToPay -= app.subSuccess;
@@ -141,7 +157,7 @@ function moins(type){
                 }
             }
             break;
-        case 'litho':
+        case "litho":
             if(app.litho!==0){
                 if(app.stateQuestLitho === "☑" && app.subToPay!=0){
                     app.subToPay -= app.subSuccess;
@@ -153,7 +169,7 @@ function moins(type){
                 }
             }
             break;
-        case 'hinox':
+        case "hinox":
             if(app.hinox!==0) {
                 if(app.stateQuestHinox === "☑" && app.subToPay!=0){
                     app.subToPay -= app.subSuccess;
@@ -172,26 +188,10 @@ function moins(type){
 function randomizer(max){
     app.subSuccess = Math.floor(Math.random() * Math.floor(max));
     if(app.subSuccess>10){
-        eastereggBG("mort",10000)
+        eastereggBG("mort",10000);
     }
     app.subToPay += app.subSuccess;
     setTimeout("app.CompleteOneOf=false;",20000);
 }
 
 
-// verify if all the goals are validated, if true -> play a gif in the background
-function checkend(){
-    if(app.stateQuestHinox === "☑" && app.stateQuestLitho === "☑" &&  app.stateQuestSanctu === "☑" && app.stateQuestNoix === "☑"){
-        setTimeout("",20000);
-        eastereggBG("FINI",10000)
-    }
-}
-
-function eastereggBG(gifname, timeout){
-    document.getElementById("onStream").style.backgroundImage = 'url(./images/'+gifname+'.gif)';
-    setTimeout("finEastereggBG()",timeout);
-}
-
-function finEastereggBG() {
-    document.getElementById("onStream").style.backgroundImage = '';
-}
