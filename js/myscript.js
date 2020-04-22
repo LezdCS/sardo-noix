@@ -193,5 +193,3 @@ function randomizer(max){
     app.subToPay += app.subSuccess;
     setTimeout("app.CompleteOneOf=false;",20000);
 }
-
-
