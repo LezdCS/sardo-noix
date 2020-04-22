@@ -107,17 +107,17 @@ function add(type){
     switch (type){
         case "noix":
             if(app.noix<900 && app.stateQuestNoix !== "☑"){app.noix++; app.help?app.subToPay+=5:{};}
-            if(app.noix===900 && app.stateQuestNoix !== "☑"){ randomizer(20);  app.stateQuestNoix = "☑"; app.CompleteOneOf=true; eastereggBG('dance', 8000);}
+            if(app.noix===900 && app.stateQuestNoix !== "☑"){ randomizer(20);  app.stateQuestNoix = "☑"; app.CompleteOneOf=true; eastereggBG("dance", 8000);}
             checkend();
             break;
         case "sanctu":
             if(app.sanctu<120 && app.stateQuestSanctu !== "☑"){app.sanctu++; app.help?app.subToPay+=15:{};}
-            if(app.sanctu===120 && app.stateQuestSanctu !== "☑"){ randomizer(200);  app.stateQuestSanctu = "☑"; app.CompleteOneOf=true; eastereggBG('dance', 8000);}
+            if(app.sanctu===120 && app.stateQuestSanctu !== "☑"){ randomizer(200);  app.stateQuestSanctu = "☑"; app.CompleteOneOf=true; eastereggBG("dance", 8000);}
             checkend();
             break;
         case "litho":
             if(app.litho<40 && app.stateQuestLitho !== "☑"){app.litho++; app.help?app.subToPay+=20:{};}
-            if(app.litho===40 && app.stateQuestLitho !== "☑"){ randomizer(20);  app.stateQuestLitho = "☑"; app.CompleteOneOf=true; eastereggBG('dance', 8000);}
+            if(app.litho===40 && app.stateQuestLitho !== "☑"){ randomizer(20);  app.stateQuestLitho = "☑"; app.CompleteOneOf=true; eastereggBG("dance", 8000);}
             if(app.litho===10 || app.litho===20 || app.litho===30 ){
                 eastereggBG('smart', 1000);
             }
@@ -125,7 +125,7 @@ function add(type){
             break;
         case "hinox":
             if(app.hinox<40 && app.stateQuestHinox !== "☑"){app.hinox++; app.help?app.subToPay+=10:{};}
-            if(app.hinox===40 && app.stateQuestHinox !== "☑"){ randomizer(20);  app.stateQuestHinox = "☑"; app.CompleteOneOf=true; eastereggBG('fin', 4000);}
+            if(app.hinox===40 && app.stateQuestHinox !== "☑"){ randomizer(20);  app.stateQuestHinox = "☑"; app.CompleteOneOf=true; eastereggBG("fin", 4000);}
             checkend();
             break;
     }
