@@ -1,4 +1,7 @@
 # sardo'noix
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/20ea047f78164ba6b241415b655e9069)](https://app.codacy.com/manual/LezdCS/sardo-noix?utm_source=github.com&utm_medium=referral&utm_content=LezdCS/sardo-noix&utm_campaign=Badge_Grade_Dashboard)
+
 Petit programme dev en quelques heures.
 C'est le même visuel que le programme de Sardoche mais je l'ai fait en VueJS.
 Dans cette version vous pouvez save votre progression.
