@@ -23,16 +23,45 @@ var app = new Vue({
     },
     methods: {
         reloadPaye: function (){
-            reloadPaye();
+            app.equiPrixSub = app.subPaid*4.99;
+            app.equiPrixSub = Math.round(app.equiPrixSub * 100) / 100
+        }
+    },
+    mounted() {
+        if(localStorage.noix){this.noix = localStorage.noix;}
+        if(localStorage.sanctu){this.sanctu = localStorage.sanctu;}
+        if(localStorage.litho){this.litho = localStorage.litho;}
+        if(localStorage.hinox){this.hinox = localStorage.hinox;}
+        if(localStorage.subToPay){this.subToPay = localStorage.subToPay;}
+        if(localStorage.subPaid){this.subPaid = localStorage.subPaid;}
+        if(localStorage.equiPrixSub){this.equiPrixSub = localStorage.equiPrixSub;}
+    },
+    watch: {
+        noix(newNoix) {
+            localStorage.noix = newNoix;
+        },
+        sanctu(newSanctu) {
+            localStorage.sanctu = newSanctu;
+        },
+        litho(newLitho) {
+            localStorage.litho = newLitho;
+        },
+        hinox(newHinox) {
+            localStorage.hinox = newHinox;
+        },
+        subToPay(newSubToPay) {
+            localStorage.subToPay = newSubToPay;
+        },
+        subPaid(newSubPaid) {
+            localStorage.subPaid = newSubPaid;
+        },
+        equiPrixSub(newEquiPrixSub) {
+            localStorage.equiPrixSub = newEquiPrixSub;
         }
     }
+
 });
 
-// usefull when the user import his save or change the value in the configuration part, it re-calcul the total amount paid
-function reloadPaye(){
-    app.equiPrixSub = app.subPaid*4.99;
-    app.equiPrixSub = Math.round(app.equiPrixSub * 100) / 100
-}
 
 // function called when the user click on "validation" button
 function validepaye(){
@@ -149,71 +178,6 @@ function randomizer(max){
     setTimeout("app.CompleteOneOf=false;",20000);
 }
 
-// Write the data in JSON form into a .txt
-function save(){
-    var contentJson = {
-        "saveInfos":[
-            {"Noix":app.noix, "Sanctuaires":app.sanctu, "Litho":app.litho, "Hinox":app.hinox, "Sub to pay":app.subToPay,"Sub paid":app.subPaid}
-        ]
-    };
-
-    contentJson = JSON.stringify(contentJson);
-
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(contentJson));
-    element.setAttribute('download', "save.txt");
-
-    element.style.display = 'none';
-    document.body.appendChild(element);
-
-    element.click();
-
-    document.body.removeChild(element);
-}
-
-function readBlob(opt_startByte, opt_stopByte) {
-
-    var files = document.getElementById('files').files;
-    if (!files.length) {
-        alert('Veuillez avant toutes choses choisir une save à charger');
-        return;
-    }
-
-    var file = files[0];
-    var start = parseInt(opt_startByte) || 0;
-    var stop = parseInt(opt_stopByte) || file.size - 1;
-
-    var reader = new FileReader();
-
-    reader.onloadend = function(evt) {
-        if (evt.target.readyState == FileReader.DONE) {
-            loadsavedata(evt.target.result);
-        }
-    };
-
-    var blob = file.slice(start, stop + 1);
-    reader.readAsBinaryString(blob);
-}
-
-document.querySelector('.readBytesButtons').addEventListener('click', function(evt) {
-    if (evt.target.tagName.toLowerCase() == 'button') {
-        var startByte = evt.target.getAttribute('data-startbyte');
-        var endByte = evt.target.getAttribute('data-endbyte');
-        readBlob(startByte, endByte);
-    }
-}, false);
-
-// parse the content of the save loaded and apply everything to the variables.
-function loadsavedata(contentOfTxt){
-    const parsing = JSON.parse(contentOfTxt);
-    app.noix = parsing.saveInfos[0].Noix;
-    app.sanctu = parsing.saveInfos[0].Sanctuaires;
-    app.litho = parsing.saveInfos[0].Litho;
-    app.hinox = parsing.saveInfos[0].Hinox;
-    app.subToPay = parsing.saveInfos[0]["Sub to pay"];
-    app.subPaid = parsing.saveInfos[0]["Sub paid"];
-    reloadPaye();
-}
 
 // verify if all the goals are validated, if true -> play a gif in the background
 function checkend(){
