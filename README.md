@@ -8,4 +8,4 @@ Pour créer une save il faut appuyer sur le bouton "Save".
 Pour load une save il faut cliquer sur "Choisir un fichier", choisir le fichier de save puis sur "Charger la save".
 
 La couleur à chroma key pour le stream est : #0033cc 
-Vous pouvez la changer en allant dans le dossier "css/index.css" et en modifiant le "background-color:" dans la partie ".onStream"
+<br> Vous pouvez la changer en allant dans le dossier "css/index.css" et en modifiant le "background-color:" dans la partie ".onStream"
