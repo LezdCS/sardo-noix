@@ -22,9 +22,154 @@ var app = new Vue({
         subSuccess:0,
     },
     methods: {
-        reloadPaye(){
-            app.equiPrixSub = app.subPaid*4.99;
-            app.equiPrixSub = Math.round(app.equiPrixSub * 100) / 100;
+        reloadPaye: function () {
+            this.equiPrixSub = this.subPaid * 4.99;
+            this.equiPrixSub = Math.round(this.equiPrixSub * 100) / 100;
+        },
+        aide: function () {
+            if (this.help) {
+                this.help = false;
+                this.helpStyle.color = "red";
+                this.helpMsg = "Aide : OFF";
+            } else {
+                this.help = true;
+                this.helpStyle.color = "green";
+                this.helpMsg = "Aide : ON";
+            }
+        },
+        add: function (type) {
+            switch (type) {
+                case "noix":
+                    if (this.noix < 900 && this.stateQuestNoix !== "☑") {
+                        this.noix++;
+                        this.help ? this.subToPay += 5 : {};
+                    }
+                    if (this.noix === 900 && this.stateQuestNoix !== "☑") {
+                        this.randomizer(20);
+                        this.stateQuestNoix = "☑";
+                        this.CompleteOneOf = true;
+                        eastereggBG("dance", 8000);
+                    }
+                    this.checkend();
+                    break;
+                case "sanctu":
+                    if (this.sanctu < 120 && this.stateQuestSanctu !== "☑") {
+                        this.sanctu++;
+                        this.help ? this.subToPay += 15 : {};
+                    }
+                    if (this.sanctu === 120 && this.stateQuestSanctu !== "☑") {
+                        this.randomizer(200);
+                        this.stateQuestSanctu = "☑";
+                        this.CompleteOneOf = true;
+                        eastereggBG("dance", 8000);
+                    }
+                    this.checkend();
+                    break;
+                case "litho":
+                    if (this.litho < 40 && this.stateQuestLitho !== "☑") {
+                        this.litho++;
+                        this.help ? this.subToPay += 20 : {};
+                    }
+                    if (this.litho === 40 && this.stateQuestLitho !== "☑") {
+                        this.randomizer(20);
+                        this.stateQuestLitho = "☑";
+                        this.CompleteOneOf = true;
+                        eastereggBG("dance", 8000);
+                    }
+                    if (this.litho === 10 || this.litho === 20 || this.litho === 30) {
+                        eastereggBG('smart', 1000);
+                    }
+                    this.checkend();
+                    break;
+                case "hinox":
+                    if (this.hinox < 40 && this.stateQuestHinox !== "☑") {
+                        this.hinox++;
+                        this.help ? this.subToPay += 10 : {};
+                    }
+                    if (this.hinox === 40 && this.stateQuestHinox !== "☑") {
+                        this.randomizer(20);
+                        this.stateQuestHinox = "☑";
+                        this.CompleteOneOf = true;
+                        eastereggBG("fin", 4000);
+                    }
+                    this.checkend();
+                    break;
+            }
+        },
+        randomizer : function(max){
+            this.subSuccess = Math.floor(Math.random() * Math.floor(max));
+            if(this.subSuccess>10){
+                eastereggBG("mort",10000);
+            }
+            this.subToPay += this.subSuccess;
+            setTimeout("app.CompleteOneOf=false;",20000);
+        },
+        moins: function (type) {
+            switch (type) {
+                case "noix":
+                    if (this.noix !== 0) {
+                        if (this.stateQuestNoix === "☑" && this.subToPay !== 0) {
+                            this.subToPay -= this.subSuccess;
+                        }
+                        this.noix--;
+                        this.stateQuestNoix = "☐";
+                        if (this.subToPay !== 0) {
+                            this.help ? this.subToPay -= 5 : {};
+                        }
+                    }
+                    break;
+                case "sanctu":
+                    if (this.sanctu !== 0) {
+                        if (this.stateQuestSanctu === "☑" && this.subToPay !== 0) {
+                            this.subToPay -= this.subSuccess;
+                        }
+                        this.sanctu--;
+                        this.stateQuestSanctu = "☐";
+                        if (this.subToPay !== 0) {
+                            this.help ? this.subToPay -= 15 : {};
+                        }
+                    }
+                    break;
+                case "litho":
+                    if (this.litho !== 0) {
+                        if (this.stateQuestLitho === "☑" && this.subToPay !== 0) {
+                            this.subToPay -= this.subSuccess;
+                        }
+                        this.litho--;
+                        this.stateQuestLitho = "☐";
+                        if (this.subToPay !== 0) {
+                            this.help ? this.subToPay -= 20 : {};
+                        }
+                    }
+                    break;
+                case "hinox":
+                    if (this.hinox !== 0) {
+                        if (this.stateQuestHinox === "☑" && this.subToPay !== 0) {
+                            this.subToPay -= this.subSuccess;
+                        }
+                        this.hinox--;
+                        this.stateQuestHinox = "☐";
+                        if (this.subToPay !== 0) {
+                            this.help ? app.subToPay -= 10 : {};
+                        }
+                    }
+                    break;
+            }
+        },
+        validepaye: function () {
+            if (this.subToPay > 0) {
+                eastereggBG("pensif", 3000);
+                this.subPaid += app.subToPay;
+                this.equiPrixSub += 4.99 * app.subToPay;
+                this.subToPay = 0;
+                this.equiPrixSub = Math.round(app.equiPrixSub * 100) / 100;
+            }
+        },
+        checkend : function(){
+            if (this.stateQuestHinox === "☑" && this.stateQuestLitho === "☑" && this.stateQuestSanctu === "☑" && this.stateQuestNoix === "☑") {
+                setTimeout("", 20000);
+                eastereggBG("FINI", 10000);
+            }
         }
     },
     mounted() {
@@ -32,9 +177,9 @@ var app = new Vue({
         if(localStorage.sanctu){this.sanctu = localStorage.sanctu;}
         if(localStorage.litho){this.litho = localStorage.litho;}
         if(localStorage.hinox){this.hinox = localStorage.hinox;}
-        if(localStorage.subToPay){this.subToPay = localStorage.subToPay;}
-        if(localStorage.subPaid){this.subPaid = localStorage.subPaid;}
-        if(localStorage.equiPrixSub){this.equiPrixSub = localStorage.equiPrixSub;}
+        if(localStorage.subToPay){this.subToPay = parseInt(localStorage.subToPay);}
+        if(localStorage.subPaid){this.subPaid = parseInt(localStorage.subPaid);}
+        if(localStorage.equiPrixSub){this.equiPrixSub = parseInt(localStorage.equiPrixSub);}
         if(localStorage.stateQuestNoix){this.stateQuestNoix = localStorage.stateQuestNoix;}
         if(localStorage.stateQuestSanctu){this.stateQuestSanctu = localStorage.stateQuestSanctu;}
         if(localStorage.stateQuestLitho){this.stateQuestLitho = localStorage.stateQuestLitho;}
@@ -75,7 +220,6 @@ var app = new Vue({
             localStorage.stateQuestHinox = newstateQuestHinox;
         }
     }
-
 });
 
 function eastereggBG(gifname, timeout){
@@ -85,127 +229,4 @@ function eastereggBG(gifname, timeout){
 
 function finEastereggBG() {
     document.getElementById("onStream").style.backgroundImage = "";
-}
-
-// verify if all the goals are validated, if true -> play a gif in the background
-function checkend(){
-    if(app.stateQuestHinox === "☑" && app.stateQuestLitho === "☑" &&  app.stateQuestSanctu === "☑" && app.stateQuestNoix === "☑"){
-        setTimeout("",20000);
-        eastereggBG("FINI",10000);
-    }
-}
-
-// function called when the user click on "validation" button
-function validepaye(){
-    if(app.subToPay>0){
-        eastereggBG("pensif",3000);
-        app.subPaid += app.subToPay;
-        app.equiPrixSub += 4.99*app.subToPay;
-        app.subToPay=0;
-        app.equiPrixSub = Math.round(app.equiPrixSub * 100) / 100;
-    }
-}
-
-// control the help part
-function aide(){
-    if(app.help){
-        app.help = false;
-        app.helpStyle.color="red";
-        app.helpMsg = "Aide : OFF";
-    }else{
-        app.help = true;
-        app.helpStyle.color="green";
-        app.helpMsg = "Aide : ON";
-    }
-}
-
-function add(type){
-    switch (type){
-        case "noix":
-            if(app.noix<900 && app.stateQuestNoix !== "☑"){app.noix++; app.help?app.subToPay+=5:{};}
-            if(app.noix===900 && app.stateQuestNoix !== "☑"){ randomizer(20);  app.stateQuestNoix = "☑"; app.CompleteOneOf=true; eastereggBG("dance", 8000);}
-            checkend();
-            break;
-        case "sanctu":
-            if(app.sanctu<120 && app.stateQuestSanctu !== "☑"){app.sanctu++; app.help?app.subToPay+=15:{};}
-            if(app.sanctu===120 && app.stateQuestSanctu !== "☑"){ randomizer(200);  app.stateQuestSanctu = "☑"; app.CompleteOneOf=true; eastereggBG("dance", 8000);}
-            checkend();
-            break;
-        case "litho":
-            if(app.litho<40 && app.stateQuestLitho !== "☑"){app.litho++; app.help?app.subToPay+=20:{};}
-            if(app.litho===40 && app.stateQuestLitho !== "☑"){ randomizer(20);  app.stateQuestLitho = "☑"; app.CompleteOneOf=true; eastereggBG("dance", 8000);}
-            if(app.litho===10 || app.litho===20 || app.litho===30 ){
-                eastereggBG('smart', 1000);
-            }
-            checkend();
-            break;
-        case "hinox":
-            if(app.hinox<40 && app.stateQuestHinox !== "☑"){app.hinox++; app.help?app.subToPay+=10:{};}
-            if(app.hinox===40 && app.stateQuestHinox !== "☑"){ randomizer(20);  app.stateQuestHinox = "☑"; app.CompleteOneOf=true; eastereggBG("fin", 4000);}
-            checkend();
-            break;
-    }
-}
-
-function moins(type){
-    switch (type){
-        case "noix":
-            if(app.noix!==0) {
-                if(app.stateQuestNoix === "☑" && app.subToPay!==0){
-                    app.subToPay -= app.subSuccess;
-                }
-                app.noix--;
-                app.stateQuestNoix = "☐";
-                if(app.subToPay!==0) {
-                    app.help ? app.subToPay -= 5 : {};
-                }
-            }
-            break;
-        case "sanctu":
-            if(app.sanctu!==0) {
-                if(app.stateQuestSanctu === "☑" && app.subToPay!=0){
-                    app.subToPay -= app.subSuccess;
-                }
-                app.sanctu--;
-                app.stateQuestSanctu = "☐";
-                if(app.subToPay!==0) {
-                    app.help ? app.subToPay -= 15 : {};
-                }
-            }
-            break;
-        case "litho":
-            if(app.litho!==0){
-                if(app.stateQuestLitho === "☑" && app.subToPay!=0){
-                    app.subToPay -= app.subSuccess;
-                }
-                app.litho--;
-                app.stateQuestLitho = "☐";
-                if(app.subToPay!==0){
-                    app.help?app.subToPay-=20:{};
-                }
-            }
-            break;
-        case "hinox":
-            if(app.hinox!==0) {
-                if(app.stateQuestHinox === "☑" && app.subToPay!=0){
-                    app.subToPay -= app.subSuccess;
-                }
-                app.hinox--;
-                app.stateQuestHinox = "☐";
-                if(app.subToPay!==0){
-                    app.help ? app.subToPay -= 10 : {};
-                }
-            }
-            break;
-    }
-}
-
-// randomize a number between 0 and max.
-function randomizer(max){
-    app.subSuccess = Math.floor(Math.random() * Math.floor(max));
-    if(app.subSuccess>10){
-        eastereggBG("mort",10000);
-    }
-    app.subToPay += app.subSuccess;
-    setTimeout("app.CompleteOneOf=false;",20000);
 }
