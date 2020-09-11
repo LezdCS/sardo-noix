@@ -13,7 +13,7 @@ var app = new Vue({
         CompleteOneOf: false,
         subSuccess:0,
         items_add_moins : {
-            "Noix" :
+            Noix :
             {
                 display_name : "Noix",
                 recolte : 0,
@@ -22,7 +22,7 @@ var app = new Vue({
                 randomizeCompleteMax : 20,
                 state : "☐"
             },
-            "Sanctuaires" : {
+            Sanctuaires : {
                 display_name : "Sanctuaires",
                 recolte : 0,
                 max : 120,
@@ -30,7 +30,7 @@ var app = new Vue({
                 randomizeCompleteMax : 200,
                 state : "☐"
             },
-            "Lithoroks" : {
+            Lithoroks : {
                 display_name : "Lithoroks",
                 recolte : 0,
                 max : 40,
@@ -38,7 +38,7 @@ var app = new Vue({
                 randomizeCompleteMax : 20,
                 state : "☐"
             },
-            "Hinox" : {
+            Hinox : {
                 display_name : "Hinox",
                 recolte : 0,
                 max : 40,

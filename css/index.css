@@ -5,7 +5,7 @@ body{
     color: white;
 }
 
-#divP{
+#divP {
     display: flex;
     flex-wrap: wrap;
 }
