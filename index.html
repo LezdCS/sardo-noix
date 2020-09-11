@@ -11,10 +11,12 @@
     <div id="divP">
         <div id="onStream">
             <p style="margin-bottom: 0; ">Objectifs : (!subgift)</p>
-            <p class="pStream">{{stateQuestNoix}} {{noix}}/900 Noix</p><button class="bouttonmoins" @click="moins('noix')">-</button> <button class="bouttonplus" @click="add('noix')">+</button><br>
-            <p class="pStream">{{stateQuestSanctu}} {{sanctu}}/120 Sanctuaires</p> <button class="bouttonmoins" @click="moins('sanctu')">-</button><button class="bouttonplus" @click="add('sanctu')">+</button><br>
-            <p class="pStream">{{stateQuestLitho}} {{litho}}/40 Lithoroks </p><button class="bouttonmoins" @click="moins('litho')">-</button><button class="bouttonplus" @click="add('litho')">+</button><br>
-            <p class="pStream">{{stateQuestHinox}} {{hinox}}/40 Hinox </p><button class="bouttonmoins" @click="moins('hinox')">-</button><button class="bouttonplus" @click="add('hinox')">+</button><br>
+            <div v-for="item in items_add_moins">
+                <p class="pStream">{{item.state}} {{item.recolte}}/{{item.max}} {{item.display_name}}</p>
+                <button class="bouttonmoins" @click="moins(item.display_name)">-</button>
+                <button class="bouttonplus" @click="add(item.display_name)">+</button>
+            </div>
+            
             <br>
             <p class="pStream">Sub à payer : {{subToPay}}</p><button class="bouttonplus" @click="validepaye()">✔</button>
             <p style="margin-top: 0; ">Sub offerts : {{subPaid}} ({{equiPrixSub}}€)</p>
@@ -24,23 +26,11 @@
         </div>
 
         <div id="config">
-            <h2>Configuration</h2>
+            <h2>Configuration ⚙️</h2>
             <table>
-                <tr>
-                    <td>Noix</td>
-                    <td><label for="Noix"></label><input type="number" min="0" id="Noix" v-model="noix"></td>
-                </tr>
-                <tr>
-                    <td>Sanctuaires</td>
-                    <td><label for="Sanctuaires"></label><input type="number" min="0" id="Sanctuaires" v-model="sanctu"></td>
-                </tr>
-                <tr>
-                    <td>Lithoroks</td>
-                    <td><label for="Litho"></label><input type="number" min="0" id="Litho" v-model="litho"></td>
-                </tr>
-                <tr>
-                    <td>Hinox</td>
-                    <td><label for="Hinox"></label><input type="number" min="0" id="Hinox" v-model="hinox"></td>
+                <tr v-for="item in items_add_moins">
+                    <td>{{item.display_name}}</td>
+                    <td><label :for="item.display_name"></label><input type="number" min="0" :id="item.display_name" v-model="item.recolte"></td>
                 </tr>
                 <tr>
                     <td>Sub à payer</td>

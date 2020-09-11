@@ -1,17 +1,9 @@
 var app = new Vue({
     el: "#divP",
     data: {
-        noix : 0,
-        sanctu:0,
-        litho : 0,
-        hinox : 0,
         subToPay : 0,
         subPaid: 0,
         equiPrixSub: 0,
-        stateQuestNoix: "☐",
-        stateQuestSanctu: "☐",
-        stateQuestLitho: "☐",
-        stateQuestHinox: "☐",
         help: false,
         helpMsg : "Aide : OFF",
         helpStyle : {
@@ -20,6 +12,41 @@ var app = new Vue({
         },
         CompleteOneOf: false,
         subSuccess:0,
+        items_add_moins : {
+            "Noix" :
+            {
+                display_name : "Noix",
+                recolte : 0,
+                max : 900,
+                ifHelptoPay : 5,
+                randomizeCompleteMax : 20,
+                state : "☐"
+            },
+            "Sanctuaires" : {
+                display_name : "Sanctuaires",
+                recolte : 0,
+                max : 120,
+                ifHelptoPay : 15,
+                randomizeCompleteMax : 200,
+                state : "☐"
+            },
+            "Lithoroks" : {
+                display_name : "Lithoroks",
+                recolte : 0,
+                max : 40,
+                ifHelptoPay : 20,
+                randomizeCompleteMax : 20,
+                state : "☐"
+            },
+            "Hinox" : {
+                display_name : "Hinox",
+                recolte : 0,
+                max : 40,
+                ifHelptoPay : 10,
+                randomizeCompleteMax : 20,
+                state : "☐"
+            }
+        }
     },
     methods: {
         reloadPaye: function () {
@@ -37,64 +64,20 @@ var app = new Vue({
                 this.helpMsg = "Aide : ON";
             }
         },
-        add: function (type) {
-            switch (type) {
-                case "noix":
-                    if (this.noix < 900 && this.stateQuestNoix !== "☑") {
-                        this.noix++;
-                        this.help ? this.subToPay += 5 : {};
-                    }
-                    if (this.noix === 900 && this.stateQuestNoix !== "☑") {
-                        this.randomizer(20);
-                        this.stateQuestNoix = "☑";
-                        this.CompleteOneOf = true;
-                        eastereggBG("dance", 8000);
-                    }
-                    this.checkend();
-                    break;
-                case "sanctu":
-                    if (this.sanctu < 120 && this.stateQuestSanctu !== "☑") {
-                        this.sanctu++;
-                        this.help ? this.subToPay += 15 : {};
-                    }
-                    if (this.sanctu === 120 && this.stateQuestSanctu !== "☑") {
-                        this.randomizer(200);
-                        this.stateQuestSanctu = "☑";
-                        this.CompleteOneOf = true;
-                        eastereggBG("dance", 8000);
-                    }
-                    this.checkend();
-                    break;
-                case "litho":
-                    if (this.litho < 40 && this.stateQuestLitho !== "☑") {
-                        this.litho++;
-                        this.help ? this.subToPay += 20 : {};
-                    }
-                    if (this.litho === 40 && this.stateQuestLitho !== "☑") {
-                        this.randomizer(20);
-                        this.stateQuestLitho = "☑";
-                        this.CompleteOneOf = true;
-                        eastereggBG("dance", 8000);
-                    }
-                    if (this.litho === 10 || this.litho === 20 || this.litho === 30) {
-                        eastereggBG('smart', 1000);
-                    }
-                    this.checkend();
-                    break;
-                case "hinox":
-                    if (this.hinox < 40 && this.stateQuestHinox !== "☑") {
-                        this.hinox++;
-                        this.help ? this.subToPay += 10 : {};
-                    }
-                    if (this.hinox === 40 && this.stateQuestHinox !== "☑") {
-                        this.randomizer(20);
-                        this.stateQuestHinox = "☑";
-                        this.CompleteOneOf = true;
-                        eastereggBG("fin", 4000);
-                    }
-                    this.checkend();
-                    break;
+        add: function (itemToModif) {
+            const item = this.items_add_moins[itemToModif];
+            if (item.recolte < item.max && item.state !== "☑") {
+                item.recolte++;
+                this.help ? this.subToPay += item.ifHelptoPay : {};
             }
+            if (item.recolte  === item.max && item.state !== "☑") {
+                this.randomizer(item.randomizeCompleteMax);
+                item.state = "☑";
+                this.CompleteOneOf = true;
+                eastereggBG("dance", 8000);
+            }
+            this.checkend();
+
         },
         randomizer : function(max){
             this.subSuccess = Math.floor(Math.random() * Math.floor(max));
@@ -104,56 +87,17 @@ var app = new Vue({
             this.subToPay += this.subSuccess;
             setTimeout("app.CompleteOneOf=false;",20000);
         },
-        moins: function (type) {
-            switch (type) {
-                case "noix":
-                    if (this.noix !== 0) {
-                        if (this.stateQuestNoix === "☑" && this.subToPay !== 0) {
-                            this.subToPay -= this.subSuccess;
-                        }
-                        this.noix--;
-                        this.stateQuestNoix = "☐";
-                        if (this.subToPay !== 0) {
-                            this.help ? this.subToPay -= 5 : {};
-                        }
-                    }
-                    break;
-                case "sanctu":
-                    if (this.sanctu !== 0) {
-                        if (this.stateQuestSanctu === "☑" && this.subToPay !== 0) {
-                            this.subToPay -= this.subSuccess;
-                        }
-                        this.sanctu--;
-                        this.stateQuestSanctu = "☐";
-                        if (this.subToPay !== 0) {
-                            this.help ? this.subToPay -= 15 : {};
-                        }
-                    }
-                    break;
-                case "litho":
-                    if (this.litho !== 0) {
-                        if (this.stateQuestLitho === "☑" && this.subToPay !== 0) {
-                            this.subToPay -= this.subSuccess;
-                        }
-                        this.litho--;
-                        this.stateQuestLitho = "☐";
-                        if (this.subToPay !== 0) {
-                            this.help ? this.subToPay -= 20 : {};
-                        }
-                    }
-                    break;
-                case "hinox":
-                    if (this.hinox !== 0) {
-                        if (this.stateQuestHinox === "☑" && this.subToPay !== 0) {
-                            this.subToPay -= this.subSuccess;
-                        }
-                        this.hinox--;
-                        this.stateQuestHinox = "☐";
-                        if (this.subToPay !== 0) {
-                            this.help ? app.subToPay -= 10 : {};
-                        }
-                    }
-                    break;
+        moins: function (itemToModif) {
+            const item = this.items_add_moins[itemToModif];
+            if (item.recolte !== 0) {
+                if (item.state === "☑" && this.subToPay !== 0) {
+                    this.subToPay -= this.subSuccess;
+                }
+                item.recolte--;
+                item.state = "☐";
+                if (this.subToPay !== 0) {
+                    this.help ? this.subToPay -= item.ifHelptoPay : {};
+                }
             }
         },
         validepaye: function () {
@@ -166,38 +110,23 @@ var app = new Vue({
             }
         },
         checkend : function(){
-            if (this.stateQuestHinox === "☑" && this.stateQuestLitho === "☑" && this.stateQuestSanctu === "☑" && this.stateQuestNoix === "☑") {
+            if (this.items_add_moins.Hinox.state === "☑" && this.items_add_moins.Lithoroks.state === "☑" && this.items_add_moins.Sanctuaires.state === "☑" && this.items_add_moins.Noix.state === "☑") {
                 setTimeout("", 20000);
                 eastereggBG("FINI", 10000);
             }
         }
     },
     mounted() {
-        if(localStorage.noix){this.noix = localStorage.noix;}
-        if(localStorage.sanctu){this.sanctu = localStorage.sanctu;}
-        if(localStorage.litho){this.litho = localStorage.litho;}
-        if(localStorage.hinox){this.hinox = localStorage.hinox;}
         if(localStorage.subToPay){this.subToPay = parseInt(localStorage.subToPay);}
         if(localStorage.subPaid){this.subPaid = parseInt(localStorage.subPaid);}
         if(localStorage.equiPrixSub){this.equiPrixSub = parseInt(localStorage.equiPrixSub);}
-        if(localStorage.stateQuestNoix){this.stateQuestNoix = localStorage.stateQuestNoix;}
-        if(localStorage.stateQuestSanctu){this.stateQuestSanctu = localStorage.stateQuestSanctu;}
-        if(localStorage.stateQuestLitho){this.stateQuestLitho = localStorage.stateQuestLitho;}
-        if(localStorage.stateQuestHinox){this.stateQuestHinox = localStorage.stateQuestHinox;}
+        if(localStorage.items_add_moins){
+            for(let item in JSON.parse(localStorage.items_add_moins)){
+                this.items_add_moins[item] = JSON.parse(localStorage.items_add_moins)[item];
+            }
+        }
     },
     watch: {
-        noix(newNoix) {
-            localStorage.noix = newNoix;
-        },
-        sanctu(newSanctu) {
-            localStorage.sanctu = newSanctu;
-        },
-        litho(newLitho) {
-            localStorage.litho = newLitho;
-        },
-        hinox(newHinox) {
-            localStorage.hinox = newHinox;
-        },
         subToPay(newSubToPay) {
             localStorage.subToPay = newSubToPay;
         },
@@ -207,17 +136,11 @@ var app = new Vue({
         equiPrixSub(newEquiPrixSub) {
             localStorage.equiPrixSub = newEquiPrixSub;
         },
-        stateQuestNoix(newStateQuestNoix) {
-            localStorage.stateQuestNoix = newStateQuestNoix;
-        },
-        stateQuestSanctu(newstateQuestSanctu) {
-            localStorage.stateQuestSanctu = newstateQuestSanctu;
-        },
-        stateQuestLitho(newstateQuestLitho) {
-            localStorage.stateQuestLitho = newstateQuestLitho;
-        },
-        stateQuestHinox(newstateQuestHinox) {
-            localStorage.stateQuestHinox = newstateQuestHinox;
+        items_add_moins : {
+            handler(val){
+                localStorage.setItem('items_add_moins', JSON.stringify(val));
+            },
+            deep: true
         }
     }
 });

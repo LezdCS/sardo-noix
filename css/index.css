@@ -1,6 +1,8 @@
 body{
     margin: 0 0 0 0;
     font-family: "Segoe UI Semibold",serif;
+    background-color: #2f3640;
+    color: white;
 }
 
 #divP{
